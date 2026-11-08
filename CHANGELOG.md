@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.0.0
 
 First release of `protoc-gen-twirp_csharp`, a protoc plugin that generates C# clients for Twirp
 services, also available as `protoc-gen-twirpcs`.
