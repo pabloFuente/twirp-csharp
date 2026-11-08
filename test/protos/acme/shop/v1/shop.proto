@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package acme.shop.v1;
+
+import "google/protobuf/empty.proto";
+
+// Shop sells items.
+service Shop {
+  // GetItem returns the item with the given id.
+  rpc GetItem(GetItemRequest) returns (Item);
+  // Ping takes and returns a message of another package.
+  rpc Ping(google.protobuf.Empty) returns (google.protobuf.Empty);
+  // Quote takes and returns nested messages.
+  rpc Quote(Order.Line) returns (Order.Line.Price);
+}
+
+message GetItemRequest {
+  string id = 1;
+}
+
+message Item {
+  string id = 1;
+  string name = 2;
+}
+
+message Order {
+  message Line {
+    message Price {
+      int64 cents = 1;
+    }
+    string item_id = 1;
+    int32 quantity = 2;
+  }
+  repeated Line lines = 1;
+}

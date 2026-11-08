@@ -1,0 +1,11 @@
+edition = "2023";
+
+package acme.editions;
+
+service Echo {
+  rpc Say(Message) returns (Message);
+}
+
+message Message {
+  string text = 1;
+}

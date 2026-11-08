@@ -1,0 +1,36 @@
+version: 2
+updates:
+  # google.golang.org/protobuf, the only dependency of the plugin
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # A version released less than a week ago is not proposed yet. Security updates are never delayed
+    cooldown:
+      default-days: 7
+  # The packages of the C# tests, one pull request per dependency for both projects
+  - package-ecosystem: "nuget"
+    directories:
+      - "/test/csharp/Acme.Generated"
+      - "/test/csharp/Acme.Tests"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7
+    groups:
+      nuget:
+        group-by: dependency-name
+  # The workflows pin every action to a full commit SHA followed by "# vX.Y.Z"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    cooldown:
+      default-days: 7
+    groups:
+      actions:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"

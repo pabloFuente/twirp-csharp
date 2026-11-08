@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package acme.inventory;
+
+option csharp_namespace = "Acme.Inventory.Proto";
+
+import "acme/shop/v1/shop.proto";
+
+service Inventory {
+  // Count takes a message of another file and package.
+  rpc Count(acme.shop.v1.Item) returns (Stock);
+}
+
+message Stock {
+  int32 count = 1;
+}

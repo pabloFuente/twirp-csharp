@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+// A package named system: its C# namespace, Acme.System, is a sibling of the client's (Acme.Clients).
+package acme.system;
+
+service Monitor {
+  rpc Check(Health) returns (Health);
+}
+
+message Health {
+  bool ok = 1;
+}
